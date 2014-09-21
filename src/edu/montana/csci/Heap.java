@@ -2,7 +2,7 @@ package edu.montana.csci;
 
 import java.util.ArrayList;
 
-public class Heap extends BinaryTree{
+public class Heap extends BinaryTree {
 		
 	public Heap(ArrayList<Integer> listOfIntegers) {	
 		for (Integer value:listOfIntegers) {
@@ -12,11 +12,11 @@ public class Heap extends BinaryTree{
 		buildHeap(listOfIntegers.size());
 		
 		for (int a=0; a < getVertices().size(); a++) {
-			if ((a*2) + 1 < getVertices().size()) {
-				((BinaryTreeVertex) getVertices().get(a)).setLeftChild((BinaryTreeVertex) getVertices().get((a*2) + 1));
+			if ((a<<1) + 1 < getVertices().size()) {
+				((BinaryTreeVertex) getVertices().get(a)).setLeftChild((BinaryTreeVertex) getVertices().get((a<<1) + 1));
 			}
-			if ((a*2) +2 < getVertices().size()) {
-				((BinaryTreeVertex) getVertices().get(a)).setRightChild((BinaryTreeVertex) getVertices().get((a*2) + 2));
+			if ((a<<1) +2 < getVertices().size()) {
+				((BinaryTreeVertex) getVertices().get(a)).setRightChild((BinaryTreeVertex) getVertices().get((a<<1) + 2));
 			}
 			((HeapVertex) getVertices().get(a)).setHeapIndex(a);
 		}
