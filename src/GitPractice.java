@@ -1,3 +1,0 @@
-public GitPractice {
-	// test class 
-}
