@@ -113,12 +113,12 @@ public class BinaryTree extends Graph {
 		return (Math.max(maxHeight(vertex.getLeftChild()), maxHeight(vertex.getRightChild())) - Math.min(maxHeight(vertex.getLeftChild()), maxHeight(vertex.getRightChild())));
 	}	
 	public void updateHeight(BinaryTreeVertex vertex) {
-		int leftHeight =0;
-		int rightHeight =0;
-		if (vertex.getLeftChild()!=null) leftHeight = vertex.getLeftChild().getHeight();
-		if (vertex.getRightChild()!=null) rightHeight = vertex.getRightChild().getHeight();
-		//int leftHeight = vertex.getLeftChild() !=null ? vertex.getLeftChild().getHeight() : 0;
-		//int rightHeight = vertex.getRightChild() != null? vertex.getRightChild().getHeight() : 0;
+		//int leftHeight =0;
+		//int rightHeight =0;
+		//if (vertex.getLeftChild()!=null) leftHeight = vertex.getLeftChild().getHeight();
+		//if (vertex.getRightChild()!=null) rightHeight = vertex.getRightChild().getHeight();
+		int leftHeight = vertex.getLeftChild() !=null ? vertex.getLeftChild().getHeight() : 0;
+		int rightHeight = vertex.getRightChild() != null? vertex.getRightChild().getHeight() : 0;
 		vertex.setBalanceFactor(leftHeight - rightHeight);
 		vertex.setHeight(1+(leftHeight > rightHeight? leftHeight : rightHeight));
 		System.out.println(vertex.getValue()+") h="+vertex.getHeight()+" b="+vertex.getBalanceFactor());
