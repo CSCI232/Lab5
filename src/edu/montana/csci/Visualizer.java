@@ -18,14 +18,13 @@ public class Visualizer {
 	private Forest<Vertex,Edge> forest = new DelegateForest<Vertex,Edge>(new DirectedOrderedSparseMultigraph<Vertex,Edge>());   
     private Graph graph;
 	
-    public Visualizer(Graph g) { 		
-        graph=g;
+    public Visualizer(Graph inGraph) { 		
+        this.graph=inGraph;
     }
 	
 	public void treeBuilder () {
 		if (graph instanceof BinaryTree)
-			((BinaryTree) graph).updateEdges();	
-	
+			((BinaryTree) graph).updateEdges();		
 				
 		for (Vertex v : graph.getVertices()) {
 			forest.addVertex(v);
@@ -37,7 +36,7 @@ public class Visualizer {
 	}
 	
 	public Forest<Vertex, Edge> getForest() {
-		return forest;
+		return this.forest;
 	}
     
     public void viewGraph() {

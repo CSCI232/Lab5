@@ -10,7 +10,7 @@ public class Vertex {
     public Vertex(int val){
         this.vertexVal = val;
     }  
-    
+
     public int getValue() { 
             return vertexVal; 
     }

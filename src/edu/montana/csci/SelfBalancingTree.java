@@ -4,21 +4,21 @@ public abstract class SelfBalancingTree extends BinaryTree {
 	
 	public void rotateLeft(BinaryTreeVertex localRoot) {
 		BinaryTreeVertex rightChild = localRoot.getRightChild();		
-		rightChild.setParent(localRoot.getParent());
-		localRoot.setRightChild(rightChild.getLeftChild());
-		rightChild.getLeftChild().setParent(localRoot);
-		rightChild.setLeftChild(localRoot);
-		localRoot.setParent(rightChild);
+		if (localRoot==getRoot()) setRoot(rightChild);
+		else rightChild.setParent(localRoot.getParent());		
+		if (rightChild.getLeftChild() != null) localRoot.setRightChild(rightChild.getLeftChild());
+		else localRoot.rightChild=null;
+		rightChild.setLeftChild(localRoot);		
 		updateHeight(localRoot);
 		updateHeight(rightChild);
 	}	
 	public void rotateRight(BinaryTreeVertex localRoot) {
 		BinaryTreeVertex leftChild = localRoot.getLeftChild();
-		leftChild.setParent(localRoot.getParent());
-		localRoot.setLeftChild(leftChild.getRightChild());
-		leftChild.getRightChild().setParent(localRoot);
+		if (localRoot==getRoot()) setRoot(leftChild);
+		else leftChild.setParent(localRoot.getParent());		
+		if (leftChild.getRightChild() != null) localRoot.setLeftChild(leftChild.getRightChild());
+		else localRoot.leftChild=null;
 		leftChild.setRightChild(localRoot);
-		localRoot.setParent(leftChild);
 		updateHeight(localRoot);
 		updateHeight(leftChild);
 	}
