@@ -2,7 +2,10 @@
 package edu.montana.csci;
 
 public class BinaryTree extends Graph {	
+	
 	private BinaryTreeVertex root;	
+	
+
 	public BinaryTree() {
 		super();
 	}	
@@ -44,22 +47,22 @@ public class BinaryTree extends Graph {
 			return treeSearch(x.getLeftChild(),k);
 		else return treeSearch(x.getRightChild(),k);
 	}	
-	public void treeInsert(BinaryTreeVertex z) {
+	public void treeInsert(BinaryTreeVertex localRoot, BinaryTreeVertex newVertex) {
 		BinaryTreeVertex y = null;
 		BinaryTreeVertex x = this.root;
 		while (x!=null) {
 			y = x;
-			if (z.getValue() < x.getValue())
+			if (localRoot.getValue() < x.getValue())
 				x = x.getLeftChild();
 			else x = x.getRightChild();	
 		}
-		z.setParent(y);
+		localRoot.setParent(y);
 		if (y==null)
-			this.setRoot(z);
-		else if (z.getValue() < y.getValue())
-			y.setLeftChild(z);
-		else y.setRightChild(z);		
-		this.addVertex(z);	
+			this.setRoot(localRoot);
+		else if (localRoot.getValue() < y.getValue())
+			y.setLeftChild(localRoot);
+		else y.setRightChild(localRoot);		
+		this.addVertex(localRoot);	
 	}	
 	public void transplant(BinaryTreeVertex u, BinaryTreeVertex v) {
 		if (u.getParent() == null)
@@ -92,5 +95,12 @@ public class BinaryTree extends Graph {
 		while (x.getLeftChild()!=null)
 			x = x.getLeftChild();
 		return x;
-	}	
+	}
+	public void updateHeight(BinaryTreeVertex vertex) {
+		int leftHeight = vertex.getLeftChild() !=null ? vertex.getLeftChild().getHeight() : 0;
+		int rightHeight = vertex.getRightChild() != null? vertex.getRightChild().getHeight() : 0;
+		vertex.setBalanceFactor(leftHeight - rightHeight);
+		vertex.setHeight(1+(leftHeight > rightHeight? leftHeight : rightHeight));
+	}
+
 }

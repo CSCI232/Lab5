@@ -1,18 +1,26 @@
-public abstract class SelfBalancingTree {
-	public void rotateLeft(AVLVertex localRoot) {
-		AVLVertex rightChild = (AVLVertex) localRoot.getRightChild();		
+package edu.montana.csci;
+
+public abstract class SelfBalancingTree extends BinaryTree {
+	
+	public void rotateLeft(BinaryTreeVertex localRoot) {
+		BinaryTreeVertex rightChild = localRoot.getRightChild();		
 		rightChild.setParent(localRoot.getParent());
 		localRoot.setRightChild(rightChild.getLeftChild());
 		rightChild.getLeftChild().setParent(localRoot);
 		rightChild.setLeftChild(localRoot);
 		localRoot.setParent(rightChild);
+		updateHeight(localRoot);
+		updateHeight(rightChild);
 	}	
-	public void rotateRight (AVLVertex localRoot) {
-		AVLVertex leftChild = (AVLVertex) localRoot.getLeftChild();
+	public void rotateRight(BinaryTreeVertex localRoot) {
+		BinaryTreeVertex leftChild = localRoot.getLeftChild();
 		leftChild.setParent(localRoot.getParent());
 		localRoot.setLeftChild(leftChild.getRightChild());
-		lefChild.getRightChild.setParent(localRoot);
-		lefChild.setRightChild(localRoot);
-		localRoot.setParent(lefChild);
+		leftChild.getRightChild().setParent(localRoot);
+		leftChild.setRightChild(localRoot);
+		localRoot.setParent(leftChild);
+		updateHeight(localRoot);
+		updateHeight(leftChild);
 	}
+
 }
