@@ -37,4 +37,8 @@ public class Graph {
     public void clearEdges() {
     	edges.clear();
     }
+    public void clearVertices() {
+        edges.clear();
+        edges.clear();
+    }
 }

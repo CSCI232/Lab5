@@ -1,10 +1,8 @@
-
 package edu.montana.csci;
 
 public class BinaryTree extends Graph {	
 	
-	private BinaryTreeVertex root;	
-	
+	private BinaryTreeVertex root;		
 
 	public BinaryTree() {
 		super();
@@ -12,28 +10,39 @@ public class BinaryTree extends Graph {
 	}	
 	public void setRoot(BinaryTreeVertex newRoot){
 		this.root = newRoot;
+		this.root.parent=null;
 	}	
 	public BinaryTreeVertex getRoot() {
 		return this.root;
 	}
 	public void updateEdges() {
-		clearEdges();
+		clearVertices();
 		inorderWalk(getRoot());		
-	}	
+	}
 	public void inorderWalk(BinaryTreeVertex vertex){
-
-		if (vertex.getRightChild()!=null) {
-			//vertex.getRightChild().setParent(vertex);
-			addEdge(new Edge(vertex, vertex.getRightChild()));
-			inorderWalk(vertex.getRightChild());			
-		}
 		if (vertex.getLeftChild()!=null) {
 			//vertex.getLeftChild().setParent(vertex);
 			addEdge(new Edge(vertex, vertex.getLeftChild()));
 			inorderWalk(vertex.getLeftChild());
 		}
-		//return;		
-	}	
+		if (vertex.getRightChild()!=null) {
+			//vertex.getRightChild().setParent(vertex);
+			addEdge(new Edge(vertex, vertex.getRightChild()));
+			inorderWalk(vertex.getRightChild());			
+		}		
+	}		
+	// public void inorderWalk(BinaryTreeVertex vertex){
+	// 	if (vertex.getRightChild()!=null) {
+	// 		//vertex.getRightChild().setParent(vertex);
+	// 		addEdge(new Edge(vertex, vertex.getRightChild()));
+	// 		inorderWalk(vertex.getRightChild());			
+	// 	}
+	// 	if (vertex.getLeftChild()!=null) {
+	// 		//vertex.getLeftChild().setParent(vertex);
+	// 		addEdge(new Edge(vertex, vertex.getLeftChild()));
+	// 		inorderWalk(vertex.getLeftChild());
+	// 	}
+	// }	
 	public BinaryTreeVertex iterativeTreeSearch(BinaryTreeVertex x, int k){
 		while (x != null && x.getValue()!=k ) {
 			if (k < x.getValue())
@@ -113,10 +122,6 @@ public class BinaryTree extends Graph {
 		return (Math.max(maxHeight(vertex.getLeftChild()), maxHeight(vertex.getRightChild())) - Math.min(maxHeight(vertex.getLeftChild()), maxHeight(vertex.getRightChild())));
 	}	
 	public void updateHeight(BinaryTreeVertex vertex) {
-		//int leftHeight =0;
-		//int rightHeight =0;
-		//if (vertex.getLeftChild()!=null) leftHeight = vertex.getLeftChild().getHeight();
-		//if (vertex.getRightChild()!=null) rightHeight = vertex.getRightChild().getHeight();
 		int leftHeight = vertex.getLeftChild() !=null ? vertex.getLeftChild().getHeight() : 0;
 		int rightHeight = vertex.getRightChild() != null? vertex.getRightChild().getHeight() : 0;
 		vertex.setBalanceFactor(leftHeight - rightHeight);

@@ -4,31 +4,40 @@ package edu.montana.csci;
 */
 public class AVLTree extends SelfBalancingTree {	
 	// Methods
-	public void treeInsert(BinaryTreeVertex localRoot, BinaryTreeVertex vertex) {	
-		if (localRoot.getValue() >= vertex.getValue()) 
-			if (localRoot.getLeftChild() != null)treeInsert(localRoot.getLeftChild(), vertex);
-			else localRoot.setLeftChild(vertex);
-		else if (localRoot.getRightChild() != null) treeInsert(localRoot.getRightChild(), vertex);
-		else localRoot.setRightChild(vertex);				
+	public BinaryTreeVertex treeInsert(BinaryTreeVertex localRoot, BinaryTreeVertex vertex) {	
+		if (localRoot==null) return vertex;
+		else {
+			if (vertex.getValue() <= localRoot.getValue()) {
+				localRoot.setLeftChild(treeInsert(localRoot.getLeftChild(), vertex));	
+			}		
+			else {
+				localRoot.setRightChild(treeInsert(localRoot.getRightChild(), vertex));
+			}
+		}
 		updateHeight(localRoot);
-		rebalance((AVLVertex)localRoot);		
+		rebalance(localRoot);			
+		return localRoot;	
 	}
-	public void treeInsert(AVLVertex vertex) {
+	@Override
+	public void treeInsert(BinaryTreeVertex vertex) {
 		if (getRoot()==null) {
-			setRoot(vertex);
-			updateHeight(vertex);				
+			setRoot(vertex);					
 		}
-		else treeInsert(getRoot(), vertex);
-		this.addVertex(vertex);
+		else 
+			{
+				vertex = treeInsert(getRoot(),vertex);
+				updateHeight(vertex);
+				rebalance(vertex);	
+			}
 	}
-	public void rebalance(AVLVertex vertex) {
-		if (vertex.getBalanceFactor() == 2) {
-			if (vertex.getLeftChild().getBalanceFactor() == -1) rotateLeft((BinaryTreeVertex)vertex.getLeftChild());
-			rotateRight((BinaryTreeVertex)vertex);
+	public void rebalance(BinaryTreeVertex vertex) {
+		if (vertex.getBalanceFactor() > 1) {
+			if (vertex.getLeftChild().getBalanceFactor() < 0) rotateLeft(vertex.getLeftChild());
+			rotateRight(vertex);
 		}
-		else if (vertex.getBalanceFactor() == -2) {
-			if (vertex.getRightChild().getBalanceFactor() == 1) rotateRight((BinaryTreeVertex)vertex.getRightChild());
-			rotateLeft((BinaryTreeVertex) vertex);
+		else if (vertex.getBalanceFactor() < -1) {
+			if (vertex.getRightChild().getBalanceFactor() > 0) rotateRight(vertex.getRightChild());
+			rotateLeft(vertex);
 		}
 	}
 }
