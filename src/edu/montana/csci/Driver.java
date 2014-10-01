@@ -14,15 +14,27 @@ public class Driver {
 			BinaryTreeVertex v6 = new BinaryTreeVertex(6);
 			BinaryTreeVertex v7 = new BinaryTreeVertex(7);
 			BinaryTreeVertex v8 = new BinaryTreeVertex(8);
-
-			myTree.treeInsert(v1);
-			myTree.treeInsert(v2);
-			myTree.treeInsert(v3);
-			myTree.treeInsert(v4);
-			myTree.treeInsert(v5);
-			myTree.treeInsert(v6);
-			myTree.treeInsert(v7);
-			myTree.treeInsert(v8);
+			BinaryTreeVertex v9 = new BinaryTreeVertex(9);
+			BinaryTreeVertex v10 = new BinaryTreeVertex(10);
+			BinaryTreeVertex v11 = new BinaryTreeVertex(11);
+			BinaryTreeVertex v12 = new BinaryTreeVertex(12);
+			BinaryTreeVertex v13 = new BinaryTreeVertex(13);
+			// myTree.treeInsert(v1);
+						
+			 myTree.treeInsert(v5);
+			 myTree.treeInsert(v7);
+			 myTree.treeInsert(v2);
+			 myTree.treeInsert(v3);
+			 myTree.treeInsert(v13);
+			 myTree.treeInsert(v4);
+			 myTree.treeInsert(v6);
+			 myTree.treeInsert(v10);
+			 myTree.treeInsert(v8);
+			// myTree.treeInsert(v9);
+			
+			// myTree.treeInsert(v11);
+			// myTree.treeInsert(v12);
+			 
 
 			Visualizer tree = new Visualizer(myTree);
 			tree.treeBuilder();

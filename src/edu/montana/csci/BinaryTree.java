@@ -19,16 +19,6 @@ public class BinaryTree extends Graph {
 		clearVertices();
 		inorderWalk(root);		
 	}
-	// public void inorderWalk(BinaryTreeVertex vertex){
-	// 	if (vertex.leftChild!=null) {
-	//  		addEdge(new Edge(vertex, vertex.leftChild));
-	//  		inorderWalk(vertex.leftChild);
-	//  	}
-	//  	if (vertex.rightChild!=null) {
-	//  		addEdge(new Edge(vertex, vertex.rightChild));
-	//  		inorderWalk(vertex.rightChild);			
-	//  	}		
-	// }
 	public void inorderWalk(BinaryTreeVertex vertex){
 		if (vertex.getLeftChild()!=null) {
 			addEdge(new Edge(vertex, vertex.getLeftChild()));
@@ -54,23 +44,23 @@ public class BinaryTree extends Graph {
 			return treeSearch(x.getLeftChild(),k);
 		else return treeSearch(x.getRightChild(),k);
 	}	
-	// public void treeInsert(BinaryTreeVertex vertex) {
-	// 	BinaryTreeVertex temp = null;
-	// 	BinaryTreeVertex localRoot = this.getRoot();
-	// 	while (localRoot!=null) {
-	// 		temp = localRoot;
-	// 		if (vertex.getValue() < localRoot.getValue())
-	// 			localRoot = localRoot.getLeftChild();
-	// 		else localRoot = localRoot.getRightChild();	
-	// 	}
-	// 	vertex.setParent(temp);
-	// 	if (temp==null)
-	// 		this.setRoot(vertex);
-	// 	else if (vertex.getValue() < temp.getValue())
-	// 		temp.setLeftChild(vertex);
-	// 	else temp.setRightChild(vertex);		
-	// 	this.addVertex(vertex);	
-	// }
+	public void treeInsert(BinaryTreeVertex vertex) {
+		BinaryTreeVertex temp = null;
+		BinaryTreeVertex localRoot = this.getRoot();
+		while (localRoot!=null) {
+			temp = localRoot;
+			if (vertex.getValue() < localRoot.getValue())
+				localRoot = localRoot.getLeftChild();
+			else localRoot = localRoot.getRightChild();	
+		}
+		vertex.setParent(temp);
+		if (temp==null)
+			this.setRoot(vertex);
+		else if (vertex.getValue() < temp.getValue())
+			temp.setLeftChild(vertex);
+		else temp.setRightChild(vertex);		
+		this.addVertex(vertex);	
+	}
 	public void transplant(BinaryTreeVertex u, BinaryTreeVertex v) {
 		if (u.getParent() == null)
 			this.root=v;
@@ -103,25 +93,4 @@ public class BinaryTree extends Graph {
 			x = x.getLeftChild();
 		return x;
 	}
-
-	public int maxHeight(BinaryTreeVertex vertex) {
-		if (vertex==null) {
-			return 0;
-		}
-		return Math.max(maxHeight(vertex.getLeftChild()), maxHeight(vertex.getRightChild())) +1; 
-	}	
-	
-	public int heightDifference(BinaryTreeVertex vertex) {
-		if (vertex==null) {
-			return 0;
-		}
-		return (Math.max(maxHeight(vertex.getLeftChild()), maxHeight(vertex.getRightChild())) - Math.min(maxHeight(vertex.getLeftChild()), maxHeight(vertex.getRightChild())));
-	}	
-	public void updateHeight(BinaryTreeVertex vertex) {
-		int leftHeight = vertex.getLeftChild() !=null ? vertex.getLeftChild().getHeight() : 0;
-		int rightHeight = vertex.getRightChild() != null? vertex.getRightChild().getHeight() : 0;
-		vertex.setBalanceFactor(leftHeight - rightHeight);
-		vertex.setHeight(1+(leftHeight > rightHeight? leftHeight : rightHeight));
-	}
-
 }
