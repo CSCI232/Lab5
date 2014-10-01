@@ -7,7 +7,7 @@ public class BinaryTreeVertex extends Vertex {
 	protected BinaryTreeVertex parent;
 	protected int height;
 	/** balanceFactor is right subtree height - left subtree height */
-	private int balanceFactor;
+	protected int balanceFactor;
 	// Methods
 	public BinaryTreeVertex(int val) {
 		super(val);
@@ -46,5 +46,4 @@ public class BinaryTreeVertex extends Vertex {
 	public int getBalanceFactor() {
 		return this.balanceFactor;
 	}
-
 }

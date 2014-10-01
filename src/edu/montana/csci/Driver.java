@@ -5,7 +5,7 @@ public class Driver {
 		public static void main(String[] args) {
 			
 			AVLTree myTree = new AVLTree();
-
+			//BinaryTree myTree = new BinaryTree();
 			BinaryTreeVertex v1 = new BinaryTreeVertex(1);
 			BinaryTreeVertex v2 = new BinaryTreeVertex(2);
 			BinaryTreeVertex v3 = new BinaryTreeVertex(3);
@@ -16,21 +16,13 @@ public class Driver {
 			BinaryTreeVertex v8 = new BinaryTreeVertex(8);
 
 			myTree.treeInsert(v1);
-			printStats(myTree);
 			myTree.treeInsert(v2);
-			printStats(myTree);
 			myTree.treeInsert(v3);
-			printStats(myTree);
 			myTree.treeInsert(v4);
-			printStats(myTree);
 			myTree.treeInsert(v5);
-			printStats(myTree);
 			myTree.treeInsert(v6);
-			//printStats(myTree);
 			myTree.treeInsert(v7);
-			//printStats(myTree);
 			myTree.treeInsert(v8);
-			//printStats(myTree);
 
 			Visualizer tree = new Visualizer(myTree);
 			tree.treeBuilder();

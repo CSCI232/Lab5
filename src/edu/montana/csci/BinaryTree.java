@@ -2,7 +2,7 @@ package edu.montana.csci;
 
 public class BinaryTree extends Graph {	
 	
-	private BinaryTreeVertex root;		
+	protected BinaryTreeVertex root;		
 
 	public BinaryTree() {
 		super();
@@ -17,32 +17,28 @@ public class BinaryTree extends Graph {
 	}
 	public void updateEdges() {
 		clearVertices();
-		inorderWalk(getRoot());		
+		inorderWalk(root);		
 	}
+	// public void inorderWalk(BinaryTreeVertex vertex){
+	// 	if (vertex.leftChild!=null) {
+	//  		addEdge(new Edge(vertex, vertex.leftChild));
+	//  		inorderWalk(vertex.leftChild);
+	//  	}
+	//  	if (vertex.rightChild!=null) {
+	//  		addEdge(new Edge(vertex, vertex.rightChild));
+	//  		inorderWalk(vertex.rightChild);			
+	//  	}		
+	// }
 	public void inorderWalk(BinaryTreeVertex vertex){
 		if (vertex.getLeftChild()!=null) {
-			//vertex.getLeftChild().setParent(vertex);
 			addEdge(new Edge(vertex, vertex.getLeftChild()));
 			inorderWalk(vertex.getLeftChild());
 		}
 		if (vertex.getRightChild()!=null) {
-			//vertex.getRightChild().setParent(vertex);
 			addEdge(new Edge(vertex, vertex.getRightChild()));
 			inorderWalk(vertex.getRightChild());			
 		}		
 	}		
-	// public void inorderWalk(BinaryTreeVertex vertex){
-	// 	if (vertex.getRightChild()!=null) {
-	// 		//vertex.getRightChild().setParent(vertex);
-	// 		addEdge(new Edge(vertex, vertex.getRightChild()));
-	// 		inorderWalk(vertex.getRightChild());			
-	// 	}
-	// 	if (vertex.getLeftChild()!=null) {
-	// 		//vertex.getLeftChild().setParent(vertex);
-	// 		addEdge(new Edge(vertex, vertex.getLeftChild()));
-	// 		inorderWalk(vertex.getLeftChild());
-	// 	}
-	// }	
 	public BinaryTreeVertex iterativeTreeSearch(BinaryTreeVertex x, int k){
 		while (x != null && x.getValue()!=k ) {
 			if (k < x.getValue())
@@ -58,23 +54,23 @@ public class BinaryTree extends Graph {
 			return treeSearch(x.getLeftChild(),k);
 		else return treeSearch(x.getRightChild(),k);
 	}	
-	public void treeInsert(BinaryTreeVertex vertex) {
-		BinaryTreeVertex temp = null;
-		BinaryTreeVertex localRoot = this.getRoot();
-		while (localRoot!=null) {
-			temp = localRoot;
-			if (vertex.getValue() < localRoot.getValue())
-				localRoot = localRoot.getLeftChild();
-			else localRoot = localRoot.getRightChild();	
-		}
-		vertex.setParent(temp);
-		if (temp==null)
-			this.setRoot(vertex);
-		else if (vertex.getValue() < temp.getValue())
-			temp.setLeftChild(vertex);
-		else temp.setRightChild(vertex);		
-		this.addVertex(vertex);	
-	}
+	// public void treeInsert(BinaryTreeVertex vertex) {
+	// 	BinaryTreeVertex temp = null;
+	// 	BinaryTreeVertex localRoot = this.getRoot();
+	// 	while (localRoot!=null) {
+	// 		temp = localRoot;
+	// 		if (vertex.getValue() < localRoot.getValue())
+	// 			localRoot = localRoot.getLeftChild();
+	// 		else localRoot = localRoot.getRightChild();	
+	// 	}
+	// 	vertex.setParent(temp);
+	// 	if (temp==null)
+	// 		this.setRoot(vertex);
+	// 	else if (vertex.getValue() < temp.getValue())
+	// 		temp.setLeftChild(vertex);
+	// 	else temp.setRightChild(vertex);		
+	// 	this.addVertex(vertex);	
+	// }
 	public void transplant(BinaryTreeVertex u, BinaryTreeVertex v) {
 		if (u.getParent() == null)
 			this.root=v;
@@ -126,9 +122,6 @@ public class BinaryTree extends Graph {
 		int rightHeight = vertex.getRightChild() != null? vertex.getRightChild().getHeight() : 0;
 		vertex.setBalanceFactor(leftHeight - rightHeight);
 		vertex.setHeight(1+(leftHeight > rightHeight? leftHeight : rightHeight));
-		System.out.println(vertex.getValue()+") h="+vertex.getHeight()+" b="+vertex.getBalanceFactor());
-		//vertex.setBalanceFactor(heightDifference(vertex));
-		//vertex.setHeight(maxHeight(vertex));
 	}
 
 }
