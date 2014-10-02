@@ -7,15 +7,18 @@ package edu.montana.csci;
 public class Vertex {
     protected int vertexVal;
     
-    public Vertex(int val){
+    public Vertex(int val) {
         this.vertexVal = val;
     }  
+    public Vertex(){
+        
+    }
 
     public int getValue() { 
             return vertexVal; 
     }
     
-    public void setValue(int val){ 
+    public void setValue(int val) { 
         this.vertexVal=val; 
     }
     

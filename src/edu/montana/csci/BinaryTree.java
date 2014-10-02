@@ -7,8 +7,8 @@ public class BinaryTree extends Graph {
 	public BinaryTree() {
 		super();
 		this.root=null;
-	}	
-	public void setRoot(BinaryTreeVertex newRoot){
+	}
+	public void setRoot(BinaryTreeVertex newRoot) {
 		this.root = newRoot;
 		this.root.parent=null;
 	}	
@@ -19,7 +19,7 @@ public class BinaryTree extends Graph {
 		clearVertices();
 		inorderWalk(root);		
 	}
-	public void inorderWalk(BinaryTreeVertex vertex){
+	public void inorderWalk(BinaryTreeVertex vertex) {
 		if (vertex.getLeftChild()!=null) {
 			addEdge(new Edge(vertex, vertex.getLeftChild()));
 			inorderWalk(vertex.getLeftChild());

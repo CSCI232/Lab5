@@ -9,19 +9,18 @@ public class Edge {
     private int edgeVal;
     private int edgeLabel;
     private Vertex v1;
-    private Vertex v2;
+    private Vertex v2;    
     
-    
-    public Edge(Vertex u1, Vertex u2){
+    public Edge(Vertex u1, Vertex u2) {
         v1 = u1;
         v2 = u2;        
     }
     
-    public Vertex getVertex1(){
+    public Vertex getVertex1() {
         return v1;
     }
     
-    public Vertex getVertex2(){
+    public Vertex getVertex2() {
         return v2;
     }
     
@@ -43,8 +42,5 @@ public class Edge {
     
     public String toString() {
     	return edgeLabel + "";
-    }
-    
-    
-    
+    }       
 }

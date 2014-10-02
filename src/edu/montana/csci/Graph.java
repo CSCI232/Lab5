@@ -18,11 +18,11 @@ public class Graph {
         this.edges.add(e);
     }
     
-    public void removeEdge(Edge e){
+    public void removeEdge(Edge e) {
     	this.edges.remove(e);
     }
     
-    public void removeVertex(Vertex v){
+    public void removeVertex(Vertex v) {
      	this.vertices.remove(v);
     }
     
@@ -38,7 +38,6 @@ public class Graph {
     	edges.clear();
     }
     public void clearVertices() {
-        edges.clear();
-        edges.clear();
+        vertices.clear();
     }
 }
